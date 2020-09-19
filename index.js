@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 const solc = require('solc')
+const fs = require('fs')
 
 function getSelectors(code) {
-
-
   const input = {
     language: 'Solidity',
     sources: {
@@ -57,13 +56,15 @@ async function main() {
   process.argv.shift()  // skip name of js file
   const args = process.argv.join(" ")
   if (args) {
-    getSelectors(args)
-    process.exit(0)
+    if (fs.existsSync(args)) {
+      getSelectors(fs.readFileSync(args))
+    } else {
+      getSelectors(args)
+    }
   } else {
-    const input = await streamToString(process.stdin)
-    getSelectors(input)
-    process.exit(0)
+    getSelectors(await streamToString(process.stdin))
   }
+  process.exit(0)
 }
 
 main().catch(console.log)

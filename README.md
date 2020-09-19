@@ -27,3 +27,8 @@ npm i -g solidity-selector
 ' | solidity-selector
 0xf6b2d3d1 f(uint256,bytes[],(address))
 ```
+
+```shell script
+> solidity-selector input.sol
+0xf6b2d3d1 f(uint256,bytes[],(address))
+```
