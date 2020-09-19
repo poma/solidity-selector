@@ -27,6 +27,9 @@ function getSelectors(code) {
   const output = JSON.parse(solc.compile(JSON.stringify(input)))
   const errors = output.errors.filter(e => e.severity === 'error')
   if (errors.length) {
+    if (!code.startsWith('function')) {
+      return getSelectors('function ' + code)
+    }
     let msg = ''
     for (const e of errors) {
       msg += e.formattedMessage + '\n'
