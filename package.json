@@ -1,0 +1,14 @@
+{
+  "name": "solidity-selector",
+  "version": "1.0.0",
+  "description": "Calculates solidity selector from function signature",
+  "bin": "index.js",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Roman Semenov <semenov.roma@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/poma/solidity-selector",
+  "dependencies": {
+    "solc": "^0.7.1"
+  }
+}
