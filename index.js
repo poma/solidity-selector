@@ -3,14 +3,15 @@ const solc = require('solc')
 const fs = require('fs')
 
 function getSelectors(code) {
+  code = code.replace(/IERC\d+/g, 'address')
   const input = {
     language: 'Solidity',
     sources: {
       'test.sol': {
         content: `
-          pragma experimental ABIEncoderV2; 
-          interface C { 
-            ${code} external; 
+          pragma experimental ABIEncoderV2;
+          interface Test {
+            ${code} external;
           }
         `
       }
@@ -36,7 +37,7 @@ function getSelectors(code) {
     throw new Error(msg)
   }
 
-  const methods = output.contracts['test.sol'].C.evm.methodIdentifiers
+  const methods = output.contracts['test.sol'].Test.evm.methodIdentifiers
   for (const m in methods) {
     console.log(`0x${methods[m]} ${m}`)
   }
