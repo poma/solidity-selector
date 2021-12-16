@@ -58,7 +58,7 @@ async function main() {
   const args = process.argv.join(" ")
   if (args) {
     if (fs.existsSync(args)) {
-      getSelectors(fs.readFileSync(args))
+      getSelectors(fs.readFileSync(args).toString())
     } else {
       getSelectors(args)
     }
